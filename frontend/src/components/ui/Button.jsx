@@ -21,7 +21,7 @@ export default function Button({
     secondary:
       'bg-surface border border-border-strong text-text hover:bg-surface-subtle active:bg-surface-subtle disabled:hover:bg-surface',
     danger:
-      'bg-danger text-white hover:bg-[#8E2E28] active:bg-[#8E2E28] disabled:hover:bg-danger',
+      'bg-danger text-white hover:opacity-90 active:opacity-95 disabled:hover:opacity-100 disabled:hover:bg-danger',
     ghost:
       'text-text-muted hover:text-text hover:bg-surface-subtle active:bg-surface-subtle',
     link:

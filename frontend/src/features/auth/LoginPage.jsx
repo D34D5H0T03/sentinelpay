@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
+import ThemeToggle from '../../components/ui/ThemeToggle';
 import DemoAccounts from './DemoAccounts';
 import { isValidPhone } from '../../lib/validators';
 import { getErrorMessage } from '../../lib/errors';
@@ -69,7 +70,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-canvas flex flex-col justify-center py-12 px-4 sm:px-6">
+    <div className="relative min-h-screen bg-canvas flex flex-col justify-center py-12 px-4 sm:px-6">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <h1 className="text-20 font-semibold text-text tracking-tight">SentinelPay</h1>

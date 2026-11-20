@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
+import ThemeToggle from '../../components/ui/ThemeToggle';
 import { isValidPhone } from '../../lib/validators';
 import { getErrorMessage } from '../../lib/errors';
 
@@ -90,7 +91,10 @@ export default function RegisterPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-canvas flex flex-col justify-center py-12 px-4 sm:px-6">
+      <div className="relative min-h-screen bg-canvas flex flex-col justify-center py-12 px-4 sm:px-6">
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-surface border border-border rounded-[8px] p-6 text-center space-y-4 shadow-sm">
             <h2 className="text-20 font-semibold text-text">Account created successfully</h2>
@@ -111,7 +115,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-canvas flex flex-col justify-center py-12 px-4 sm:px-6">
+    <div className="relative min-h-screen bg-canvas flex flex-col justify-center py-12 px-4 sm:px-6">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div className="sm:mx-auto sm:w-full sm:max-w-lg">
         <div className="text-center">
           <h1 className="text-20 font-semibold text-text tracking-tight">SentinelPay</h1>
