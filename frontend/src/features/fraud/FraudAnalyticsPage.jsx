@@ -14,10 +14,12 @@ import PageHeader from '../../components/layout/PageHeader';
 import Card from '../../components/ui/Card';
 import Skeleton from '../../components/ui/Skeleton';
 import ErrorState from '../../components/ui/ErrorState';
+import { useTheme } from '../../theme/ThemeContext';
 import { useAsync } from '../../lib/useAsync';
 import * as fraudApi from '../../api/fraud';
 
 export default function FraudAnalyticsPage() {
+  const { isDark } = useTheme();
   const {
     data: stats,
     loading,
@@ -63,18 +65,21 @@ export default function FraudAnalyticsPage() {
           <div className="h-64 w-full pt-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={stats.alerts_by_rule || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E2E4DE" vertical={false} />
-                <XAxis dataKey="name" tick={{ fill: '#5F6B76', fontSize: 12 }} stroke="#CDD1C8" />
-                <YAxis allowDecimals={false} tick={{ fill: '#5F6B76', fontSize: 12 }} stroke="#CDD1C8" />
+                <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#283646' : '#E2E4DE'} vertical={false} />
+                <XAxis dataKey="name" tick={{ fill: isDark ? '#94A3B8' : '#5F6B76', fontSize: 12 }} stroke={isDark ? '#3B4D61' : '#CDD1C8'} />
+                <YAxis allowDecimals={false} tick={{ fill: isDark ? '#94A3B8' : '#5F6B76', fontSize: 12 }} stroke={isDark ? '#3B4D61' : '#CDD1C8'} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E2E4DE',
+                    backgroundColor: isDark ? '#16202A' : '#FFFFFF',
+                    border: `1px solid ${isDark ? '#283646' : '#E2E4DE'}`,
                     borderRadius: '6px',
                     fontSize: '12px',
+                    color: isDark ? '#F0F4F8' : '#1F2933',
                   }}
+                  itemStyle={{ color: isDark ? '#F0F4F8' : '#1F2933' }}
+                  labelStyle={{ color: isDark ? '#94A3B8' : '#5F6B76' }}
                 />
-                <Bar dataKey="count" fill="#1F6F66" radius={[4, 4, 0, 0]} name="Alerts" />
+                <Bar dataKey="count" fill={isDark ? '#2D9388' : '#1F6F66'} radius={[4, 4, 0, 0]} name="Alerts" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -85,23 +90,26 @@ export default function FraudAnalyticsPage() {
           <div className="h-64 w-full pt-4">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={stats.alerts_per_day || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E2E4DE" vertical={false} />
-                <XAxis dataKey="date" tick={{ fill: '#5F6B76', fontSize: 12 }} stroke="#CDD1C8" />
-                <YAxis allowDecimals={false} tick={{ fill: '#5F6B76', fontSize: 12 }} stroke="#CDD1C8" />
+                <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#283646' : '#E2E4DE'} vertical={false} />
+                <XAxis dataKey="date" tick={{ fill: isDark ? '#94A3B8' : '#5F6B76', fontSize: 12 }} stroke={isDark ? '#3B4D61' : '#CDD1C8'} />
+                <YAxis allowDecimals={false} tick={{ fill: isDark ? '#94A3B8' : '#5F6B76', fontSize: 12 }} stroke={isDark ? '#3B4D61' : '#CDD1C8'} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E2E4DE',
+                    backgroundColor: isDark ? '#16202A' : '#FFFFFF',
+                    border: `1px solid ${isDark ? '#283646' : '#E2E4DE'}`,
                     borderRadius: '6px',
                     fontSize: '12px',
+                    color: isDark ? '#F0F4F8' : '#1F2933',
                   }}
+                  itemStyle={{ color: isDark ? '#F0F4F8' : '#1F2933' }}
+                  labelStyle={{ color: isDark ? '#94A3B8' : '#5F6B76' }}
                 />
                 <Line
                   type="monotone"
                   dataKey="alerts"
-                  stroke="#2F6690"
+                  stroke={isDark ? '#4A9BD9' : '#2F6690'}
                   strokeWidth={2}
-                  dot={{ fill: '#2F6690', r: 3 }}
+                  dot={{ fill: isDark ? '#4A9BD9' : '#2F6690', r: 3 }}
                   name="Alerts"
                 />
               </LineChart>

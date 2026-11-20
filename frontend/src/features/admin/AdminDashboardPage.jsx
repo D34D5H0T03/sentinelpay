@@ -17,12 +17,14 @@ import StatusBadge from '../../components/ui/StatusBadge';
 import DataTable from '../../components/ui/DataTable';
 import Skeleton from '../../components/ui/Skeleton';
 import ErrorState from '../../components/ui/ErrorState';
+import { useTheme } from '../../theme/ThemeContext';
 import { useAsync } from '../../lib/useAsync';
 import * as adminApi from '../../api/admin';
 import { formatDate, formatMoney } from '../../lib/format';
 
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
+  const { isDark } = useTheme();
 
   const {
     data: dashData,
@@ -192,28 +194,31 @@ export default function AdminDashboardPage() {
           <div className="h-64 w-full pt-4">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={daily_volume || []} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E2E4DE" vertical={false} />
-                <XAxis dataKey="date" tick={{ fill: '#5F6B76', fontSize: 12 }} stroke="#CDD1C8" />
+                <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#283646' : '#E2E4DE'} vertical={false} />
+                <XAxis dataKey="date" tick={{ fill: isDark ? '#94A3B8' : '#5F6B76', fontSize: 12 }} stroke={isDark ? '#3B4D61' : '#CDD1C8'} />
                 <YAxis
-                  tick={{ fill: '#5F6B76', fontSize: 12 }}
-                  stroke="#CDD1C8"
+                  tick={{ fill: isDark ? '#94A3B8' : '#5F6B76', fontSize: 12 }}
+                  stroke={isDark ? '#3B4D61' : '#CDD1C8'}
                   tickFormatter={(val) => `৳ ${val >= 1000 ? `${val / 1000}k` : val}`}
                 />
                 <Tooltip
                   formatter={(val) => [`৳ ${Number(val).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`, 'Volume']}
                   contentStyle={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E2E4DE',
+                    backgroundColor: isDark ? '#16202A' : '#FFFFFF',
+                    border: `1px solid ${isDark ? '#283646' : '#E2E4DE'}`,
                     borderRadius: '6px',
                     fontSize: '12px',
+                    color: isDark ? '#F0F4F8' : '#1F2933',
                   }}
+                  itemStyle={{ color: isDark ? '#F0F4F8' : '#1F2933' }}
+                  labelStyle={{ color: isDark ? '#94A3B8' : '#5F6B76' }}
                 />
                 <Line
                   type="monotone"
                   dataKey="volume"
-                  stroke="#1F6F66"
+                  stroke={isDark ? '#2D9388' : '#1F6F66'}
                   strokeWidth={2}
-                  dot={{ fill: '#1F6F66', r: 3 }}
+                  dot={{ fill: isDark ? '#2D9388' : '#1F6F66', r: 3 }}
                   name="Volume"
                 />
               </LineChart>

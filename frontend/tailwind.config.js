@@ -4,46 +4,47 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        canvas: '#F4F5F2',
+        canvas: 'var(--color-canvas)',
         surface: {
-          DEFAULT: '#FFFFFF',
-          subtle: '#FAFAF8',
+          DEFAULT: 'var(--color-surface)',
+          subtle: 'var(--color-surface-subtle)',
         },
         border: {
-          DEFAULT: '#E2E4DE',
-          strong: '#CDD1C8',
+          DEFAULT: 'var(--color-border)',
+          strong: 'var(--color-border-strong)',
         },
         text: {
-          DEFAULT: '#1F2933',
-          muted: '#5F6B76',
+          DEFAULT: 'var(--color-text)',
+          muted: 'var(--color-text-muted)',
         },
         primary: {
-          DEFAULT: '#1F6F66',
-          hover: '#185A52',
-          subtle: '#E3F0EE',
+          DEFAULT: 'var(--color-primary)',
+          hover: 'var(--color-primary-hover)',
+          subtle: 'var(--color-primary-subtle)',
         },
         success: {
-          DEFAULT: '#2F7A4F',
-          bg: '#E6F2EA',
+          DEFAULT: 'var(--color-success)',
+          bg: 'var(--color-success-bg)',
         },
         warning: {
-          DEFAULT: '#9A6A12',
-          bg: '#FAF0DA',
+          DEFAULT: 'var(--color-warning)',
+          bg: 'var(--color-warning-bg)',
         },
         danger: {
-          DEFAULT: '#B03A33',
-          bg: '#FBE9E7',
+          DEFAULT: 'var(--color-danger)',
+          bg: 'var(--color-danger-bg)',
         },
         info: {
-          DEFAULT: '#2F6690',
-          bg: '#E5EEF6',
+          DEFAULT: 'var(--color-info)',
+          bg: 'var(--color-info-bg)',
         },
         neutral: {
-          DEFAULT: '#5F6B76',
-          bg: '#ECEEEA',
+          DEFAULT: 'var(--color-neutral)',
+          bg: 'var(--color-neutral-bg)',
         },
       },
       fontFamily: {
@@ -65,8 +66,8 @@ export default {
         modal: '8px',
       },
       boxShadow: {
-        dropdown: '0 4px 16px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04)',
-        modal: '0 12px 32px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06)',
+        dropdown: '0 4px 16px -2px rgba(0, 0, 0, 0.12), 0 2px 4px -2px rgba(0, 0, 0, 0.08)',
+        modal: '0 12px 32px -4px rgba(0, 0, 0, 0.24), 0 4px 8px -2px rgba(0, 0, 0, 0.12)',
       },
       transitionDuration: {
         DEFAULT: '150ms',

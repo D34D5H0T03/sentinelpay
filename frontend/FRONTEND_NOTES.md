@@ -71,3 +71,13 @@ The application is decoupled from the storage layer via domain API modules (`src
 
 ### 6. Role-Based Access Control (RBAC) & Route Protection
 Five discrete roles (`CUSTOMER`, `AGENT`, `FRAUD_ANALYST`, `ADMIN`, `AUDITOR`) are enforced via `ProtectedRoute` and `RoleGate`. The `AUDITOR` role exemplifies strict access control: it has read-only visibility into the ledger, audit trail, and transaction list, but is explicitly barred from performing state-mutating actions (such as transaction reversals).
+
+### 7. Dark Mode Architecture & System Preference Detection
+- **Placement & Scope:** A global theme toggle button is located immediately to the left of the account details dropdown in the top-right header (`Topbar.jsx`) and on unauthenticated screens (`LoginPage.jsx`, `RegisterPage.jsx`). A single click toggles the entire website instantaneously.
+- **System-Default Behavior:** The initial theme dynamically checks the user's OS preference (`window.matchMedia('(prefers-color-scheme: dark)')`). If the user prefers dark mode in their operating system, SentinelPay defaults to dark mode out-of-the-box.
+- **Dynamic OS Listener:** While no explicit manual preference is stored in `localStorage`, SentinelPay listens to OS-level theme switches in real time.
+- **Persistence:** When an explicit choice is made, it is persisted to `localStorage['sentinelpay_theme']` (`'dark'` or `'light'`).
+- **Anti-FOUC Implementation:** An inline script in `index.html` reads the local preference or system media query before DOM rendering, preventing flash-of-light-theme during page reloads.
+- **Design System Tokens:** Managed via CSS custom properties (`--color-canvas`, `--color-surface`, `--color-border`, `--color-text`, `--color-primary`, etc.) mapped into Tailwind config. Under the `.dark` root class, tokens automatically update across all 30+ views without needing repetitive inline utility overrides.
+- **Interactive Recharts Theme Awareness:** Recharts elements (`CartesianGrid`, `XAxis`, `YAxis`, `Tooltip`, `Bar`, `Line`) consume `isDark` from `useTheme()` to update grid lines, axis colors, and tooltip popups seamlessly.
+- **Banking Integrity:** Maintains calm slate-navy backgrounds (`#0F171E`, `#16202A`), high WCAG AA contrast ratios, and strict financial semantic rules (credits remain green `+`, debits remain standard text `-`).

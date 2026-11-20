@@ -44,6 +44,16 @@ To switch to the real Express backend API:
 
 ---
 
+## Dark Mode & Theme Switching
+
+SentinelPay includes complete dark and light mode support:
+- **Default Theme:** Automatically matches the user's OS system setting (`window.matchMedia('(prefers-color-scheme: dark)')`).
+- **Instant Switch:** A theme toggle button is placed directly to the left of the account details dropdown in the top-right header (`Topbar.jsx`) and on authentication screens.
+- **Persistence:** Manual toggles are saved in `localStorage['sentinelpay_theme']` to persist across sessions and page reloads without flashing.
+- **Bank-Grade Contrast:** Deep slate charcoal/navy palette (`#0F171E`, `#16202A`) meeting WCAG AA requirements, preserving green `+` for credits and neutral `-` for debits. Recharts diagrams dynamically adjust axis, grid, and tooltip colors to match the active theme.
+
+---
+
 ## Demo Accounts
 
 On the `/login` page, a **Demo accounts** row allows one-click auto-fill for each role:
@@ -88,13 +98,16 @@ frontend/
     │   ├── AuthContext.jsx      # Auth state & session persistence
     │   ├── ProtectedRoute.jsx   # Role enforcement & redirect logic
     │   └── RoleGate.jsx         # Conditional role element rendering
+    ├── theme/                   # Theme management & dark mode
+    │   └── ThemeContext.jsx     # System preference detection, OS listener, and toggle
     ├── components/
-    │   ├── ui/                  # 18 custom accessible UI components (no libraries)
+    │   ├── ui/                  # 19 custom accessible UI components (no libraries)
     │   │   ├── Button.jsx, Input.jsx, Select.jsx, Textarea.jsx
     │   │   ├── Card.jsx, DataTable.jsx, StatusBadge.jsx, MoneyText.jsx
     │   │   ├── Modal.jsx, ConfirmDialog.jsx, Toast.jsx, Tabs.jsx
     │   │   ├── Stepper.jsx, Skeleton.jsx, EmptyState.jsx, ErrorState.jsx
-    │   │   └── Pagination.jsx, FilterBar.jsx, Timeline.jsx, KeyValue.jsx
+    │   │   ├── Pagination.jsx, FilterBar.jsx, Timeline.jsx, KeyValue.jsx
+    │   │   └── ThemeToggle.jsx  # One-click dark/light switch
     │   ├── layout/              # Shell, Sidebar, Topbar, PageHeader
     │   └── StyleGuide.jsx       # Component testing bench at /styleguide
     ├── features/                # Route pages by domain
